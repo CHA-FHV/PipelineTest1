@@ -1,0 +1,50 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Pipeline Test1
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+
+  # This workflow contains a single job called "build"
+  # Vorlage von GitHub: build:
+  
+  # From Seminar Slide 'GitHub Actions, Artifacts'
+  example-job: 
+    name: Pipeline-save-output 
+
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      - shell: bash 
+        run: | 
+          expr 1 + 1 > output.log 
+      - name: Upload output file 
+        uses: actions/upload-artifact@v2 
+        with: 
+          name: output-log-file 
+          path: output.log
+
+      # Runs a single command using the runners shell
+      # Vorlage von GitHub - name: Run a one-line script
+        # Vorlage von GitHub - run: echo Hello, world!
+
+      # Runs a set of commands using the runners shell
+      # Vorlage von GitHub - - name: Run a multi-line script
+        # Vorlage von GitHub - run: |
+          # Vorlage von GitHub - echo Add other actions to build,
+          # Vorlage von GitHub - echo test, and deploy your project.
