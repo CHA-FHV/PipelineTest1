@@ -32,12 +32,12 @@ jobs:
       - uses: actions/checkout@v2
       - shell: bash 
         run: | 
-          expr 1 + 1 > output.log 
+          expr 1 + 1 > Result.txt 
       - name: Upload output file 
         uses: actions/upload-artifact@v2 
         with: 
           name: output-log-file 
-          path: output.log
+          path: Result.txt
 
       # Runs a single command using the runners shell
       # Vorlage von GitHub - name: Run a one-line script
